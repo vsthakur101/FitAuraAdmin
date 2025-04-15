@@ -54,6 +54,13 @@ export interface WorkoutPlan {
     createdAt: string;
     exercises?: Exercise[];
 }
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    role: "admin" | "trainer" | "user";
+}
+
 export interface AssignedPlan {
     id: number;
     clientName: string;

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import API from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { login } from "../../services/authService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,8 +18,9 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const res = await API.post("/auth/login", { email, password });
-      localStorage.setItem("token", res.data.token);
+      const res = await login(email, password);
+      console.log("Login response:", res);
+      localStorage.setItem("token", res.token);
       toast.success("Login successful!");
       setTimeout(() => navigate("/trainer/dashboard"), 1000);
     } catch (error) {

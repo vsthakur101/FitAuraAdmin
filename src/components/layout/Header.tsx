@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../utils/auth";
+import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const handleLogout = () => {
         logout(); // Clears token
@@ -10,10 +12,10 @@ const Header = () => {
     };
 
     return (
-        <header className="bg-white shadow-sm px-4 py-3 flex justify-between items-center">
+        <header className="bg-white shadow-sm px-[6rem] py-3 flex justify-between items-center">
             {/* Left Side – Brand or Page Title */}
             <div className="text-xl font-bold text-gray-800">
-                FitAura Trainer Panel
+                FitAura {user?.role === "admin" ? "Admin Dashboard" : "Trainer Dashboard"}
             </div>
 
             {/* Right Side – User Info & Logout */}
