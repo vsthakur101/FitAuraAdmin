@@ -1,4 +1,4 @@
-import { WorkoutPlan } from "../types";
+import { Exercise, WorkoutPlan } from "../types";
 
 export const getAllPlans = async () => {
     return Promise.resolve([
@@ -44,4 +44,25 @@ export const getWorkoutPlans = async (): Promise<WorkoutPlan[]> => {
 export const createWorkoutPlan = async (plan: Omit<WorkoutPlan, "id" | "createdAt">) => {
     console.log("Creating plan:", plan);
     return Promise.resolve({ message: "Plan created successfully!" });
+};
+
+
+export const getWorkoutPlanById = async (id: number): Promise<WorkoutPlan> => {
+    return Promise.resolve({
+        id,
+        title: "Fat Loss Program",
+        goal: "Burn fat and improve stamina",
+        level: "beginner",
+        durationWeeks: 6,
+        createdAt: "2025-04-10",
+        exercises: [
+            { id: 1, label: "Jumping Jacks", sets: 3, reps: 15, rest: "30s" },
+            { id: 2, label: "Mountain Climbers", sets: 4, reps: 20, rest: "45s" },
+        ],
+    });
+};
+
+export const addExerciseToPlan = async (planId: number, exercise: Omit<Exercise, "id">) => {
+    console.log("Exercise added to plan", planId, exercise);
+    return Promise.resolve({ message: "Exercise added!" });
 };

@@ -38,6 +38,13 @@ export interface Trainer {
     role: "trainer";
     avatarUrl?: string;
 }
+export interface Exercise {
+    id: number;
+    label: string;
+    sets: number;
+    reps: number;
+    rest: string;
+}
 export interface WorkoutPlan {
     id: number;
     title: string;
@@ -45,4 +52,5 @@ export interface WorkoutPlan {
     level: "beginner" | "intermediate" | "advanced";
     durationWeeks: number;
     createdAt: string;
+    exercises?: Exercise[];
 }

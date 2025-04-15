@@ -9,6 +9,7 @@ import Schedule from "../pages/trainer/Schedule";
 import Profile from "../pages/trainer/Profile";
 import Plans from "../pages/trainer/Plans";
 import CreatePlan from "../pages/trainer/CreatePlan";
+import PlanDetail from "../pages/trainer/PlanDetail";
 
 const AppRoutes = () => (
   <Routes>
@@ -30,6 +31,7 @@ const AppRoutes = () => (
       <Route path="profile" element={<Profile />} />
       <Route path="plans" element={<Plans />} />
       <Route path="plans/create" element={<CreatePlan />} />
+      <Route path="plans/:id" element={<PlanDetail />} />
       {/* <Route path="profile" element={<TrainerProfile />} /> */}
     </Route>
     <Route path="*" element={<Navigate to="/login" />} />
