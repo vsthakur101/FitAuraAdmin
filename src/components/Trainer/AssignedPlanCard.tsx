@@ -1,15 +1,27 @@
-interface AssignedPlan {
-    name: string;
-    assignedOn: string;
+import { AssignedPlan } from "../../types";
+
+interface Props {
+    plan: AssignedPlan;
+    onReassign?: () => void; // ✅ Add this optional prop
 }
-const AssignedPlanCard = ({ plan, onReassign }: { plan: AssignedPlan | null, onReassign: () => void }) => (
-    <div className="bg-white rounded-2xl shadow p-4 flex justify-between items-center">
-        <div>
-            <h2 className="text-lg font-semibold mb-1">Assigned Plan</h2>
-            <p>{plan?.name || "No plan assigned"}</p>
-            <p className="text-sm text-gray-500">Since: {plan?.assignedOn}</p>
-        </div>
-        <button onClick={onReassign} className="btn-outline">Reassign</button>
+
+const AssignedPlanCard = ({ plan, onReassign }: Props) => (
+    <div className="bg-white p-4 rounded-xl shadow relative">
+        <h3 className="text-lg font-semibold">{plan.clientName}</h3>
+        <p className="text-sm text-gray-600">
+            Plan: <strong>{plan.planTitle}</strong>
+        </p>
+        <p className="text-xs text-gray-500">Assigned on: {plan.assignedOn}</p>
+        {plan.notes && <p className="text-sm mt-2 italic text-gray-700">“{plan.notes}”</p>}
+
+        {onReassign && (
+            <button
+                onClick={onReassign}
+                className="absolute top-2 right-2 text-blue-600 text-sm hover:underline"
+            >
+                Reassign
+            </button>
+        )}
     </div>
 );
 

@@ -10,6 +10,7 @@ import Profile from "../pages/trainer/Profile";
 import Plans from "../pages/trainer/Plans";
 import CreatePlan from "../pages/trainer/CreatePlan";
 import PlanDetail from "../pages/trainer/PlanDetail";
+import AssignedPlans from "../pages/trainer/AssignPlan";
 
 const AppRoutes = () => (
   <Routes>
@@ -32,6 +33,7 @@ const AppRoutes = () => (
       <Route path="plans" element={<Plans />} />
       <Route path="plans/create" element={<CreatePlan />} />
       <Route path="plans/:id" element={<PlanDetail />} />
+      <Route path="assigned" element={<AssignedPlans />} />
       {/* <Route path="profile" element={<TrainerProfile />} /> */}
     </Route>
     <Route path="*" element={<Navigate to="/login" />} />

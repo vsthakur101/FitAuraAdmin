@@ -1,4 +1,4 @@
-import { Exercise, WorkoutPlan } from "../types";
+import { AssignedPlan, Exercise, WorkoutPlan } from "../types";
 
 export const getAllPlans = async () => {
     return Promise.resolve([
@@ -75,4 +75,22 @@ export const updateExercise = async (planId: number, updated: Exercise): Promise
 export const deleteExercise = async (planId: number, exerciseId: number): Promise<void> => {
     console.log("Exercise deleted:", exerciseId);
     return Promise.resolve();
+};
+
+export const getAssignedPlans = async (): Promise<AssignedPlan[]> => {
+    return Promise.resolve([
+        {
+            id: 1,
+            clientName: "Rahul Sharma",
+            planTitle: "Fat Loss Program",
+            assignedOn: "2025-04-14",
+            notes: "Struggles with cardio, go slow",
+        },
+        {
+            id: 2,
+            clientName: "Sneha Gupta",
+            planTitle: "Muscle Gain Program",
+            assignedOn: "2025-04-10",
+        },
+    ]);
 };

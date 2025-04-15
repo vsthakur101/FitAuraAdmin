@@ -23,7 +23,17 @@ const ClientDetail = () => {
 
             <ClientInfoCard client={client} />
 
-            <AssignedPlanCard plan={client.assignedPlan} onReassign={() => navigate(`/trainer/clients/${id}/assign`)} />
+            {client.assignedPlan && (
+                <AssignedPlanCard
+                    plan={{
+                        id: 0, // placeholder if not available
+                        clientName: client.name,
+                        planTitle: client.assignedPlan.name,
+                        assignedOn: client.assignedPlan.assignedOn,
+                    }}
+                    onReassign={() => navigate(`/trainer/clients/${id}/assign`)}
+                />
+            )}
 
             <NotesPreview notes={client.notes} clientId={client.id} />
         </div>

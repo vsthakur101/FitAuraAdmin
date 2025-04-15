@@ -54,3 +54,10 @@ export interface WorkoutPlan {
     createdAt: string;
     exercises?: Exercise[];
 }
+export interface AssignedPlan {
+    id: number;
+    clientName: string;
+    planTitle: string;
+    assignedOn: string;
+    notes?: string;
+}
