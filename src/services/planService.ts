@@ -66,3 +66,13 @@ export const addExerciseToPlan = async (planId: number, exercise: Omit<Exercise,
     console.log("Exercise added to plan", planId, exercise);
     return Promise.resolve({ message: "Exercise added!" });
 };
+
+export const updateExercise = async (planId: number, updated: Exercise): Promise<void> => {
+    console.log("Exercise updated:", updated);
+    return Promise.resolve();
+};
+
+export const deleteExercise = async (planId: number, exerciseId: number): Promise<void> => {
+    console.log("Exercise deleted:", exerciseId);
+    return Promise.resolve();
+};

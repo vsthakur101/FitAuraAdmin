@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getWorkoutPlanById, addExerciseToPlan } from "../../services/planService";
+import { getWorkoutPlanById, addExerciseToPlan, updateExercise, deleteExercise } from "../../services/planService";
 import { Exercise, WorkoutPlan } from "../../types";
 import ExerciseCard from "../../components/Trainer/ExerciseCard";
+
 
 const PlanDetail = () => {
     const { id } = useParams();
@@ -22,6 +23,17 @@ const PlanDetail = () => {
         loadPlan();
     }, [id]);
 
+    const handleEdit = async (updated: Exercise) => {
+        await updateExercise(plan!.id, updated);
+        loadPlan();
+    };
+
+    const handleDelete = async (exId: number) => {
+        if (confirm("Delete this exercise?")) {
+            await deleteExercise(plan!.id, exId);
+            loadPlan();
+        }
+    };
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
@@ -94,7 +106,7 @@ const PlanDetail = () => {
                 {plan.exercises && plan.exercises.length > 0 ? (
                     <div className="grid sm:grid-cols-2 gap-4">
                         {plan.exercises.map((ex) => (
-                            <ExerciseCard key={ex.id} ex={ex} />
+                            <ExerciseCard key={ex.id} ex={ex} onEdit={handleEdit} onDelete={handleDelete} />
                         ))}
                     </div>
                 ) : (
