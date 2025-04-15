@@ -7,6 +7,8 @@ import RequireAuth from "../components/auth/RequireAuth";
 import Progress from "../pages/trainer/Progress";
 import Schedule from "../pages/trainer/Schedule";
 import Profile from "../pages/trainer/Profile";
+import Plans from "../pages/trainer/Plans";
+import CreatePlan from "../pages/trainer/CreatePlan";
 
 const AppRoutes = () => (
   <Routes>
@@ -26,6 +28,8 @@ const AppRoutes = () => (
       {/* <Route path="notes" element={<TrainerNotes />} /> */}
       <Route path="schedule" element={<Schedule />} />
       <Route path="profile" element={<Profile />} />
+      <Route path="plans" element={<Plans />} />
+      <Route path="plans/create" element={<CreatePlan />} />
       {/* <Route path="profile" element={<TrainerProfile />} /> */}
     </Route>
     <Route path="*" element={<Navigate to="/login" />} />
