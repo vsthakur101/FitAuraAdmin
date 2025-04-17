@@ -12,7 +12,6 @@ export const useAuth = () => {
 
     useEffect(() => {
         const token = localStorage.getItem(TOKEN_KEY);
-
         if (!token) {
             setUser(null);
             setLoading(false);
@@ -22,7 +21,6 @@ export const useAuth = () => {
         const fetchProfile = async () => {
             try {
                 const user = await getProfile();
-
                 if (user) {
                     setUser(user);
                 } else {

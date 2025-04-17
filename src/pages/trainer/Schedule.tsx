@@ -25,7 +25,7 @@ const Schedule = () => {
             }));
             setClients(basicClients);
         });
-        getAllReminders().then(setReminders);
+        getAllReminders(clients[0]?.id).then(setReminders);
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -38,17 +38,17 @@ const Schedule = () => {
             return;
         }
         await addReminder({
-            clientId: Number(form.clientId),
+            id: Number(form.clientId),
             date: form.date,
             time: form.time,
-            message: form.message,
+            description: form.message,
         });
         alert("Reminder added!");
         setForm({ clientId: "", date: "", time: "", message: "" });
     };
 
     return (
-        <div className="p-4 max-w-3xl mx-auto space-y-6">
+        <div className="px-[6rem] max-w-3xl mx-auto space-y-6">
             <h1 className="text-2xl font-bold">Schedule Reminder</h1>
 
             {/* Form */}

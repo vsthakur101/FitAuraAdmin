@@ -1,10 +1,11 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { FaUsers, FaDumbbell, FaBell, FaStickyNote } from "react-icons/fa";
 import DashboardCard from "../../components/Trainer/DashboardCard";
 import QuickActions from "../../components/Trainer/QuickActions";
 import ReminderPreview from "../../components/Trainer/ReminderPreview";
 import { getTrainerDashboardData } from "../../services/trainerService";
 import { useAuth } from "../../hooks/useAuth";
+import { getAllReminders, Reminder } from "../../services/scheduleService";
 
 const Dashboard = () => {
     const { user, loading: authLoading } = useAuth();
@@ -16,11 +17,7 @@ const Dashboard = () => {
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-
-    const dummyReminders = useMemo(() => [
-        { clientName: "Rahul Sharma", date: "16 Apr", time: "7:00 AM" },
-        { clientName: "Sneha Gupta", date: "16 Apr", time: "8:30 AM" },
-    ], []);
+    const [reminders, setReminders] = useState<Reminder[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,8 +32,19 @@ const Dashboard = () => {
             }
         };
 
+        const fetchReminders = async () => {
+            if (!user) return;
+            try {
+                const remindersData = await getAllReminders(user.id);
+                setReminders(remindersData);
+            } catch (err) {
+                console.error(err);
+                setError("Unable to fetch reminders.");
+            }
+        };
+        fetchReminders();
         fetchData();
-    }, []);
+    }, [user]);
 
     if (authLoading || loading) {
         return (
@@ -79,7 +87,7 @@ const Dashboard = () => {
                 </div>
                 <div>
                     <h2 className="text-xl font-semibold mb-4 text-gray-700">Today's Reminders</h2>
-                    <ReminderPreview reminders={dummyReminders} />
+                    <ReminderPreview reminders={reminders} />
                 </div>
             </section>
         </main>
