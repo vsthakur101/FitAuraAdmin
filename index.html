@@ -1,12 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- ✅ SEO -->
+    <title>FitAura - Your Personalized Fitness Dashboard</title>
+    <meta name="description" content="FitAura helps trainers and clients manage workouts, progress tracking, reminders, and personalized fitness goals all in one place." />
+    <meta name="keywords" content="fitness, workout, trainer, dashboard, gym, health, FitAura, progress tracker, nutrition" />
+    <meta name="author" content="FitAura Team" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- ✅ Open Graph (Facebook, LinkedIn etc) -->
+    <meta property="og:title" content="FitAura - Fitness Dashboard" />
+    <meta property="og:description" content="Manage your workouts, goals, and clients with FitAura." />
+    <meta property="og:image" content="/preview.jpg" />
+    <meta property="og:url" content="https://fitaura.app" />
+    <meta property="og:type" content="website" />
+
+    <!-- ✅ Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FitAura - Fitness Dashboard" />
+    <meta name="twitter:description" content="The complete fitness platform for trainers and clients." />
+    <meta name="twitter:image" content="/preview.jpg" />
+
+    <!-- ✅ Favicon & PWA -->
+    <link rel="icon" type="image/png" href="/public/favicon.ico" />
+    <link rel="apple-touch-icon" href="/public/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="FitAura" />
+
+    <!-- ✅ Styles/Bundle injected by React/Vite -->
+    <meta name="robots" content="index, follow" />
   </head>
-  <body>
+
+  <body class="bg-black text-white">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

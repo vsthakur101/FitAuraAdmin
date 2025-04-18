@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login } from "../../services/authService";
 import { useForm } from 'react-hook-form';
-// import { useDispatch } from 'react-redux';
-// import { loginSuccess } from '../redux/slices/authSlice';
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/slices/authSlice";
 
 type LoginForm = {
   email: string;
@@ -18,7 +18,7 @@ const Login = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginForm>();
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (data: LoginForm) => {
@@ -28,11 +28,12 @@ const Login = () => {
       return;
     }
     try {
-      const res = await login(email, password);
-      console.log("Login response:", res);
-      localStorage.setItem("token", res.token);
-      toast.success("Login successful!");
-      navigate("/trainer/dashboard")
+      const { user } = await login(email, password);
+      dispatch(loginSuccess(user))
+      setTimeout(() => {
+        navigate("/trainer/dashboard");
+      }, 1000);
+      toast.success("Login successful");
     } catch (error) {
       toast.error("Invalid credentials or server error");
       console.error("Login error:", error);

@@ -1,21 +1,26 @@
+import React from 'react';
+
 interface DashboardCardProps {
-  title: string;
+  icon: React.ReactNode;
+  label: string;
   value: number | string;
-  icon?: React.ReactNode;
-  bgColor?: string;
+  isLoading?: boolean;
 }
 
-const DashboardCard = ({ title, value, icon, bgColor }: DashboardCardProps) => {
+const DashboardCard: React.FC<DashboardCardProps> = ({ icon, label, value, isLoading }) => {
   return (
-    <div className={`rounded-xl shadow-md p-5 transition-transform transform hover:scale-[1.02] bg-white`}>
-      <div className={`w-12 h-12 flex items-center justify-center rounded-full text-xl ${bgColor || "bg-gray-200"} text-gray-800`}>
-        {icon}
-      </div>
-      <div className="mt-3">
-        <h3 className="text-sm text-gray-500">{title}</h3>
-        <p className="text-2xl font-bold text-gray-800">{value}</p>
+    <div className="bg-gray-900 rounded-xl p-4 flex items-center gap-4 hover:bg-gray-800 transition">
+      <div className="p-2 rounded-full bg-white text-black">{icon}</div>
+      <div>
+        <p className="text-sm text-gray-400">{label}</p>
+        {isLoading ? (
+          <div className="w-12 h-5 bg-gray-600 rounded animate-pulse mt-1" />
+        ) : (
+          <p className="text-xl font-bold">{value}</p>
+        )}
       </div>
     </div>
   );
 };
+
 export default DashboardCard;

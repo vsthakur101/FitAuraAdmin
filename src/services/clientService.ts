@@ -1,4 +1,7 @@
+import API from "../interceptors/tokenInterceptor";
 import { FullClient, Note } from "../types";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 export const getTrainerNotes = async (): Promise<Note[]> => {
     return Promise.resolve([
@@ -32,3 +35,8 @@ export const getClientDetail = async (id: number): Promise<FullClient> => {
         ],
     });
 };
+
+export const getAllClients = async () => {
+    const response = await API.get(`${API_URL}/api/v1/trainer/clients`);
+    return response.data;
+}

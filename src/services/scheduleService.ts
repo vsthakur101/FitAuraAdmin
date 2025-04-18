@@ -1,4 +1,5 @@
 import axios from "axios";
+import API from "../interceptors/tokenInterceptor";
 
 const API_URL = import.meta.env.VITE_API_URL;
 export interface Reminder {
@@ -22,11 +23,7 @@ export const addReminder = async (
     }
 };
 
-export const getAllReminders = async (id: number): Promise<Reminder[]> => {
-    const response = await axios.get(`${API_URL}/api/v1/trainer/${id}/upcoming-schedule`, {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-    });
-    return response.data.schedules || [];
+export const getAllReminders = async () => {
+    const response = await API.get(`${API_URL}/api/v1/trainer/schedule/upcoming`);
+    return response.data;
 };
