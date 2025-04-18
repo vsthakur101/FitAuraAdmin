@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import DashboardLayout from '../../components/layout/DashboardLayout';
-import DashboardCard from '../../components/Trainer/DashboardCard';
-import ReminderItem from '../../components/Trainer/ReminderItem';
-import ClientCard from '../../components/Trainer/ClientCard';
+import DashboardCard from '../../../components/trainer/Dashboard/DashboardCard';
+import ReminderItem from '../../../components/trainer/Dashboard/ReminderItem';
+import ClientCard from '../../../components/trainer/Dashboard/ClientCard';
 import Calendar from 'react-calendar';
 import {
     Users,
@@ -11,9 +10,9 @@ import {
     StickyNote,
     Bell,
 } from 'lucide-react';
-import { fetchStats } from '../../services/dashboardService';
-import { getAllReminders } from '../../services/scheduleService';
-import { getAllClients } from '../../services/clientService';
+import { fetchStats } from '../../../services/dashboardService';
+import { getAllReminders } from '../../../services/scheduleService';
+import { getAllClients } from '../../../services/clientService';
 
 const TrainerDashboard = () => {
     const [data, setData] = useState({
@@ -31,7 +30,7 @@ const TrainerDashboard = () => {
             setLoading(true);
             const { totalActivePlans, totalNotes, totalSessionsToday, totalClients } = await fetchStats()
             const schedules = await getAllReminders();
-            const clients = await getAllClients();
+            const {clients} = await getAllClients();
             setData({
                 totalClients: totalClients,
                 activePlans: totalActivePlans,
@@ -53,7 +52,7 @@ const TrainerDashboard = () => {
     ];
 
     return (
-        <DashboardLayout>
+        <>
             {/* Welcome */}
             <div className="mb-6">
                 <h1 className="text-3xl font-bold">Welcome back, Trainer 👋</h1>
@@ -113,7 +112,7 @@ const TrainerDashboard = () => {
                     ))}
                 </div>
             </div>
-        </DashboardLayout>
+        </>
     );
 };
 

@@ -9,10 +9,11 @@ import VerifyOtp from "../pages/auth/VerifyOtp";
 import ResetPassword from "../pages/auth/ResetPassword";
 
 /* Auth Flow End */
-import Dashboard from "../pages/trainer/Dashboard";
-// import Clients from "../pages/trainer/Clients";
+import Dashboard from "../pages/trainer/dashboard/Dashboard";
+import Clients from "../pages/trainer/client";
 import Layout from "../components/layout/Layout";
 import RequireAuth from "../components/auth/RequireAuth";
+import AddClientForm from "../pages/trainer/client/AddClientForm";
 // import Progress from "../pages/trainer/Progress";
 // import Schedule from "../pages/trainer/Schedule";
 // import Profile from "../pages/trainer/Profile";
@@ -42,7 +43,10 @@ const AppRoutes = () => (
       >
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="update-password" element={<UpdatePassword />} />
-        {/* <Route path="clients" element={<Clients />} />
+        <Route path="clients" element={<Clients />} />
+        <Route path="clients/add" element={<AddClientForm />} />
+        {/* Uncomment the following routes as needed */}
+        {/* 
         <Route path="progress" element={<Progress />} />
         <Route path="schedule" element={<Schedule />} />
         <Route path="profile" element={<Profile />} />

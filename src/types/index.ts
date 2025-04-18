@@ -68,3 +68,19 @@ export interface AssignedPlan {
     assignedOn: string;
     notes?: string;
 }
+
+export interface ClientData {
+    name: string;
+    email: string;
+    phone: number;
+    gender: 'Male' | 'Female' | 'Other';
+    goal: 'Fat Loss' | 'Muscle Gain' | 'General Fitness';
+    weight: number;
+    height: number;
+    password: string;
+    confirmPassword?: string;
+}
+
+export interface ClientFormData extends ClientData{
+    profile_photo?: File | null; // optional in case image is not uploaded
+}

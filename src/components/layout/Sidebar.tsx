@@ -14,11 +14,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/auth';
 
 const menuItems = [
-  { name: 'Home', icon: <Home size={20} />, path: '/' },
-  { name: 'Clients', icon: <Users size={20} />, path: '/clients' },
-  { name: 'Plans', icon: <ClipboardList size={20} />, path: '/plans' },
-  { name: 'Reminders', icon: <Bell size={20} />, path: '/reminders' },
-  { name: 'Notes', icon: <StickyNote size={20} />, path: '/notes' },
+  { name: 'Home', icon: <Home size={20} />, path: '/trainer/dashboard' },
+  { name: 'Clients', icon: <Users size={20} />, path: '/trainer/clients' },
+  { name: 'Plans', icon: <ClipboardList size={20} />, path: '/trainer/plans' },
+  { name: 'Reminders', icon: <Bell size={20} />, path: '/trainer/reminders' },
+  { name: 'Notes', icon: <StickyNote size={20} />, path: '/trainer/notes' },
 ];
 
 const Sidebar = () => {
